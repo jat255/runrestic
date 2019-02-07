@@ -47,6 +47,9 @@ class ResticRepository:
             raise Exception("You need to specify sources in [backup].")
         cmd += config.get('sources')
 
+        if config.get('verbose'):
+            cmd += ['--verbose']
+            
         for exclude_pattern in config.get('exclude_patterns', []):
             cmd += ['--exclude', exclude_pattern]
         for exclude_file in config.get('exclude_files', []):
